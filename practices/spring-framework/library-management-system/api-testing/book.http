@@ -1,0 +1,50 @@
+### Create a new book
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "isbn": "9780061120084",
+    "category": "Fiction",
+    "availabilityStatus": true,
+    "publishedDate": "1960-07-11",
+    "totalCopies": 15,
+    "availableCopies": 10
+}
+
+# {
+#     "title": "The Great Gatsby",
+#     "author": "F. Scott Fitzgerald",
+#     "isbn": "1234567890123",
+#     "category": "Classic",
+#     "availabilityStatus": true,
+#     "publishedDate": "2024-10-09",
+#     "totalCopies": 10,
+#     "availableCopies": 8
+# }
+
+### Get books
+GET http://localhost:8080/books
+
+### Get book by id
+GET http://localhost:8080/book?bookId=2
+
+### update book
+PUT http://localhost:8080/book?bookId=1
+Content-Type: application/json
+
+{
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "isbn": "1234567890123",
+    "category": "Classic",
+    "availabilityStatus": false,
+    "publishedDate": "2024-10-09",
+    "totalCopies": 10,
+    "availableCopies": 8
+}
+
+### delete book
+DELETE http://localhost:8080/book?bookId=2
+
