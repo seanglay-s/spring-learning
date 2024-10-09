@@ -1,0 +1,16 @@
+### Create a new book
+POST http://localhost:8080/roles
+Content-Type: application/json
+
+{
+    "roleName":"User"
+}
+
+### Get roles
+GET http://localhost:8080/roles
+
+### Get role by id
+GET http://localhost:8080/roles/1
+
+### Delete role by id
+DELETE http://localhost:8080/roles/1
