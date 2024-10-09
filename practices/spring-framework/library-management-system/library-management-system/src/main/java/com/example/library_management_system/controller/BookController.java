@@ -10,35 +10,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/books")
 public class BookController {
     @Autowired
     private BookService bookService;
 
-    @PostMapping("/books")
+    @PostMapping
     public ResponseEntity<Book> createBook(@RequestBody Book book) {
         Book saveBook = bookService.createBook(book);
         return new ResponseEntity<>(saveBook, HttpStatus.OK);
     }
 
-    @GetMapping("/books")
+    @GetMapping
     public List<Book> getBooks() {
         return bookService.getBooks();
     }
 
-    @GetMapping("/book")
-    public ResponseEntity<Book> getBook(@RequestParam(name = "bookId") long bookId) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Book> getBook(@PathVariable("id") long bookId) {
         Book book = bookService.getBook(bookId);
         return new ResponseEntity<>(book, HttpStatus.OK);
     }
 
-    @PutMapping("/book")
-    public ResponseEntity<Book> updateBook(@RequestParam(name = "bookId") long bookId, @RequestBody Book book) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable("id") long bookId, @RequestBody Book book) {
         Book updateBook = bookService.updateBook(bookId, book);
         return new ResponseEntity<>(updateBook, HttpStatus.OK);
     }
 
-    @DeleteMapping("/book")
-    public ResponseEntity<Book> deleteBook(@RequestParam(name = "bookId") long bookId) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Book> deleteBook(@PathVariable("id") long bookId) {
         Book deleteBook = bookService.deleteBook(bookId);
         return new ResponseEntity<>(deleteBook, HttpStatus.OK);
     }
