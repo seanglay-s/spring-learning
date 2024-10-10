@@ -21,3 +21,11 @@ spring:
     password: password
     baseline-description: "init"
     baseline-version: 0
+#  security:
+#    user:
+#      name: seanglay
+#      password: password
+
+logging:
+  level:
+    org.springframework.security: DEBUG
