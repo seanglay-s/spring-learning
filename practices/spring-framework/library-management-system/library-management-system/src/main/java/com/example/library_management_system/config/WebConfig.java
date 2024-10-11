@@ -1,5 +1,6 @@
-package com.example.library_management_system;
+package com.example.library_management_system.config;
 
+import com.example.library_management_system.LoggingInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

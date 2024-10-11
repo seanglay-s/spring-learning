@@ -21,8 +21,8 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<Object> register(@RequestBody Member member) {
-        Member saveMember = authenticationService.register(member);
-        return ResponseHandler.generateResponse("Member has been registered successfully", HttpStatus.OK, saveMember);
+        String token = authenticationService.register(member);
+        return ResponseHandler.generateResponse("Member has been registered successfully", HttpStatus.OK, token);
     }
 
     @PostMapping("/login")
@@ -30,7 +30,7 @@ public class AuthenticationController {
         String email = credentials.get("email");
         String password = credentials.get("password");
 
-        Member member = authenticationService.login(email, password);
-        return ResponseHandler.generateResponse("Login has been successfully", HttpStatus.OK, member);
+        String token = authenticationService.login(email, password);
+        return ResponseHandler.generateResponse("Login has been successfully", HttpStatus.OK, token);
     }
 }

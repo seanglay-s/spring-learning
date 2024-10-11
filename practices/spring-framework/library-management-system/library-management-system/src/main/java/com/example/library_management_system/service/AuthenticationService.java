@@ -4,6 +4,7 @@ import com.example.library_management_system.model.Member;
 import com.example.library_management_system.model.Role;
 import com.example.library_management_system.repository.MemberRepository;
 import com.example.library_management_system.repository.RoleRepository;
+import com.example.library_management_system.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Member register(Member member) {
+    public String register(Member member) {
         if (memberRepository.existsByEmail(member.getEmail())) {
             throw new RuntimeException("This member has already been registered");
         }
@@ -38,11 +39,11 @@ public class AuthenticationService {
         }
 
         memberRepository.save(member);
-        return member;
+        return JwtTokenUtil.generateToken(member.getFullName());
     }
 
     // Login method
-    public Member login(String email, String password) {
+    public String login(String email, String password) {
         Member existingMember = memberRepository.findByEmail(email);
         if (existingMember == null) {
             throw new IllegalArgumentException("Member not found");
@@ -51,7 +52,7 @@ public class AuthenticationService {
         if (!passwordEncoder.matches(password, existingMember.getPassword())) {
             throw new IllegalArgumentException("Password is incorrect");
         }
+        return JwtTokenUtil.generateToken(existingMember.getFullName());
 
-        return existingMember;
     }
 }

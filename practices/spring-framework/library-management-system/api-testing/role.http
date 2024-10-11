@@ -8,6 +8,7 @@ Content-Type: application/json
 
 ### Get roles
 GET http://localhost:8080/roles
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJEb2Vzc3h4eHgiLCJpYXQiOjE3Mjg2MTQzNzAsImV4cCI6MTcyODcwMDc3MH0.LsaKujPCXfLIXFdXINR6_wp8uiKhKqt8uYgucTGEZ_E
 
 ### Get role by id
 GET http://localhost:8080/roles/1
